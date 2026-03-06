@@ -40,6 +40,7 @@ function export_network_as_TF(network,pythonPackageName)
 if (isa(network,"dlnetwork"))
     validateattributes(network,{'dlnetwork'},{'scalar'});
 else
+    addpath("core\");
     validateattributes(network,{'string','char'},{'scalartext'});
     network=load("core\"+string(network)+".mat",string(network));
     network=struct2cell(network);

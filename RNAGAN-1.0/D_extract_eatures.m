@@ -58,7 +58,7 @@ if (~isnan(geneList))
     [netGeneID,listGeneID] = match_gene_list(geneList);
     temp=zeros(n(1),size(positiveRef,2));
     temp(netGeneID,:)=positiveRef(listGeneID,:);
-    positiveRef=temp;AU
+    positiveRef=temp;
     temp=zeros(n(1),size(negativeRef,2));
     temp(netGeneID,:)=negativeRef(listGeneID,:);
     negativeRef=temp;

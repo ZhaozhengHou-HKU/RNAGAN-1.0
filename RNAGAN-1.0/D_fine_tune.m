@@ -87,7 +87,7 @@ if (useGPU)
         negativeRef=gpuArray(negativeRef);
     catch
         warning("Error when using GPU, trying with CPU...");
-        useGPU=flase;
+        useGPU=false;
     end
 end
 
