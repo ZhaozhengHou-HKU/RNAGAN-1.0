@@ -1,6 +1,6 @@
 function V = G_vectorize...
     (Gnet,geneList,reference,numberOfVectors,useGPU)
-%G_VECTORIZE   Vectorize the reference sample group into 64 dimentional
+%G_VECTORIZE    Vectorize the reference sample group into 64 dimentional
 %   vector(s). The vector is for the entire group because, because the
 %   group variance of genes are also considered in vectorization.
 %   user can also use a numberOfVectors larger than 1 and the vector would

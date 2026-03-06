@@ -1,13 +1,11 @@
 function export_network_as_TF(network,pythonPackageName)
-%GET_NETWORK_INFO   display the structure and input size
-%   of a deep learning network.
+%EXPORT_NETWORK_AS_TF   Export a network as a Tensorflow model
 %   author: Zhaozheng Hou (George)
 %
-% inputSize = get_network_info(network)
+% export_network_as_TF(network,pythonPackageName)
 % parameter:
-%   - net: the network to analysis
-% output:
-%   - inputSize: the input size of the network
+%   - network: network, or name of the network
+%   - pythonPackageName: packagename, also the folder name
 
 %exportNetworkToTensorFlow  Export a MATLAB deep learning network to
 %TensorFlow.

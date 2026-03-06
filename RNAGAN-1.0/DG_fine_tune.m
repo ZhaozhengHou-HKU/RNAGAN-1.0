@@ -1,7 +1,6 @@
 function [Dnet,Gnet,Record] = DG_fine_tune...
     (Dnet,Gnet,geneList,positiveRef,negativeRef,numEpochs,validationProportion,useGPU)
-%D_DIAGNOSE   Diagnose the given target is the same as the positive
-%   reference or not.
+%DG_FINE_TUNE   Train the D and G networks with samples.
 %   author: Zhaozheng Hou (George)
 %
 % [Dnet,Gnet,Record] = DG_fine_tune(Dnet,Gnet,geneList,positiveRef,

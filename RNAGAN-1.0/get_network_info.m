@@ -1,6 +1,6 @@
 function inputSize = get_network_info(network)
-%GET_NETWORK_INFO   display the structure and input size
-%   of a deep learning network.
+%GET_NETWORK_INFO   display the structure and input size of a deep
+%   learning network.
 %   author: Zhaozheng Hou (George)
 %   
 % inputSize = get_network_info(network)

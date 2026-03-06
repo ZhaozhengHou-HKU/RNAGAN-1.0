@@ -1,26 +1,18 @@
 function [P,G] = visualize_2order_features...
     (gradients,R2,markerNames,selectedMarkers)
-%G_GENERATE_PSEUDO
-%   Generate pseudo data according to the given references.
+%VISUALIZE_2ORDER_FEATURES   Generate plot the 2nd order features
 %   author: Zhaozheng Hou (George)
 %
-% [pseudo,pseudoNet] = G_generate_pseudo(Gnet,geneList,reference,
-%       numberOfPseudo,useGPU)
+% [pseudo,pseudoNet] = visualize_2order_features(gradients,R2,
+%       markerNames,selectedMarkers)
 % parameter:
-%   - Gnet: generator network to use (network or the name of trained
-%       network, such as "BGPP10" for "the generator for bulk-RNA seq
-%       data with predefined pathways and using 10 references")
-%   - geneList: list of genes (strings or numbers), leave blank and skip
-%       the matching if the data already matched the gene list
-%   - reference: expression of smples, each column is one sample. At least
-%       2 samples.
-%   - numberOfPseudo: number of pseudo samples to generate, 1 by default.
-%   - useGPU: (optional) whether using GPU for the processing or not, false
-%       by default.
+%   - gradients: gradient matrix of features
+%   - R2: partial R2 values fo the features
+%   - markerNames: (optional) marker names, feature order by default.
+%   - selectedMarkers: (optional) features to show, show all by default.
 % output:
-%   - pseudo: data with the same gene list as reference, each column is one
-%       pseudo sample. (unmatched genes get NA)
-%   - pseudoNet: data with the gene list same as the network.
+%   - P: plot object
+%   - G: graph object
 
 %% validate
 validateattributes(gradients,{'numeric'},{'square'});

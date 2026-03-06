@@ -1,6 +1,7 @@
 classdef reshapeLayer < nnet.layer.Layer...  %#codegen
         & nnet.layer.Formattable ...
         & nnet.layer.Acceleratable
+    %  layer for reshaping (permute in dimensions) the data
 
     properties
         permuteOrder (1,:) double

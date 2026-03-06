@@ -1,5 +1,6 @@
 function [lossD,scoreD,gradientsD,stateD] = ...
     modelLossDwG(netD,netG,Z)
+% compute the loss for Discriminator against Generator
 
 temp=find(rand(size(Z,4),1)<0.1);
 if (numel(temp)>0)

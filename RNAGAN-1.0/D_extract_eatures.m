@@ -1,7 +1,6 @@
 function Features = D_extract_eatures...
     (Dnet,geneList,positiveRef,negativeRef,featureOrder)
-%D_DIAGNOSE   Diagnose the given target is the same as the positive
-%   reference or not.
+%D_EXTRACT_EATURES   Extract features of given feature order.
 %   author: Zhaozheng Hou (George)
 %
 % Features = D_extract_eatures(Dnet,geneList,positiveRef,negativeRef,

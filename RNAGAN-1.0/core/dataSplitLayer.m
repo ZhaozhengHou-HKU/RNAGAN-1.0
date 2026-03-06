@@ -1,6 +1,8 @@
 classdef dataSplitLayer < nnet.layer.Layer...  %#codegen
         & nnet.layer.Formattable ...
         & nnet.layer.Acceleratable
+    % split the data of a layer
+
     properties
         spaceSelect=1;
     end

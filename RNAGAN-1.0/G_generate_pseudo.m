@@ -1,7 +1,6 @@
 function [pseudo,pseudoNet] = G_generate_pseudo...
     (Gnet,geneList,reference,numberOfPseudo,useGPU)
-%G_GENERATE_PSEUDO
-%   Generate pseudo data according to the given references.
+%G_GENERATE_PSEUDO   Generate pseudo data according to the given references.
 %   author: Zhaozheng Hou (George)
 %
 % [pseudo,pseudoNet] = G_generate_pseudo(Gnet,geneList,reference,

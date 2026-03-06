@@ -1,5 +1,6 @@
 function [lossD,scoreD,gradientsD,stateD] = ...
     modelLossD(Dnet,Z)
+% compute the loss for Discriminator
 
 % Calculate the predictions for real data with the discriminator network.
 n=size(Z,4)+1;
