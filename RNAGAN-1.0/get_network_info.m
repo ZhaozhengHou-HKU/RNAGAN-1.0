@@ -14,11 +14,7 @@ if (isa(network,"dlnetwork"))
     validateattributes(network,{'dlnetwork'},{'scalar'});
 else
     validateattributes(network,{'string','char'},{'scalartext'});
-    if (contains(network,"D"))
-    network=load("core\trainedD.mat",string(network));
-    else
-        network=load("core\trainedG.mat",string(network));
-    end
+    network=load("core\"+string(network)+".mat",string(network));
     network=struct2cell(network);
     network=network{1};
 end

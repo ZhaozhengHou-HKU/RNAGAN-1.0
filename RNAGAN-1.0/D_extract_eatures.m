@@ -20,12 +20,14 @@ function Features = D_extract_eatures...
 % output:
 %   - Features: structure of extracted features
 
+warning off;
+
 %% validate
 if (isa(Dnet,"dlnetwork"))
     validateattributes(Dnet,{'dlnetwork'},{'scalar'});
 else
     validateattributes(Dnet,{'string','char'},{'scalartext'});
-    Dnet=load("core\trainedD.mat",string(Dnet));
+    Dnet=load("core\"+string(Dnet)+".mat",string(Dnet));
     Dnet=struct2cell(Dnet);
     Dnet=Dnet{1};
 end
@@ -78,6 +80,15 @@ Features.AUC=predict(Dnet,Z1);
 temp=predict(Dnet,Z2);
 Features.AUC=mean(Features.AUC(:)>temp(:)',"all");
 
+usingGPU=isgpuarray(Features.AUC);
+if (usingGPU)
+    Features.AUC=Features.AUC.gather();
+end
+fl=(Features.AUC<0.5);
+if (fl)
+    Features.AUC=1-Features.AUC;
+end
+
 switch (featureOrder)
     case 0 % occlusionSensitivity
         temp=zeros(n(1),n(2),1,1);
@@ -119,6 +130,13 @@ switch (featureOrder)
         Features.occlusionSensitivity=mean(Features.occlusionSensitivity,1)'...
             +mean(predict(Dnet,Z1))-mean(predict(Dnet,Z2));
         Features.occlusionSensitivity(~valid)=0;
+        if (usingGPU)
+            Features.occlusionSensitivity=Features.occlusionSensitivity.gather();
+        end
+        if (fl)
+            Features.occlusionSensitivity=-Features.occlusionSensitivity;
+        end
+
         if (numPathways>0)
             Features.occlusionSensitivity_Genes=...
                 Features.occlusionSensitivity((numPathways+1):end);
@@ -164,6 +182,9 @@ switch (featureOrder)
             temp=gradCAM(Dnet,Z2(:,:,1,ind),@(x)x,FeatureLayer="formattingLayer_2",OutputUpsampling="none");
             gradCAMscores=gradCAMscores-temp(:,targetID);
         end
+        if (fl)
+            gradCAMscores=-gradCAMscores;
+        end
 
         if (numPathways>0)
             Features.gradCAM_Genes=gradCAMscores/(2*nRef);
@@ -174,6 +195,9 @@ switch (featureOrder)
             Features.gradCAM_Genes=temp;
 
             Features.log2FC_Genes=log2(mean(positiveRef,2)./mean(negativeRef,2));
+            if (usingGPU)
+                Features.log2FC_Genes=Features.log2FC_Genes.gather();
+            end
 
             Features.MannWhitneyU_Genes=nan(numel(geneList),1);
             for ind=1:numel(geneList)
@@ -181,11 +205,10 @@ switch (featureOrder)
             end
 
             gradient=nan(n(1),1);
-            Zt1=Z1;
-            Zt2=Z2;
-            for ind=1:n(1)
+            Zt1=gpuArray(Z1);
+            Zt2=gpuArray(Z2);
+            for ind=18584:n(1)
                 disp(num2str([ind,n(1)],"Processing %u out of %u genes..."));
-
 
                 Zt1(ind,1,1,:)=Z1(ind,1,1,:)*1.05;
                 temp=predict(Dnet,Zt1);
@@ -201,6 +224,10 @@ switch (featureOrder)
 
                 gradient(ind)=mean(temp)*5; % *10/2
             end
+            if (fl)
+                gradient=-gradient;
+            end
+
             Features.gradient_Genes=nan(numel(geneList),1);
             Features.gradient_Genes(listGeneID)=gradient(netGeneID);
 
@@ -244,6 +271,9 @@ switch (featureOrder)
 
                 Features.gradient_Pathways(ind)=mean(temp)*5;
             end
+            if (fl)
+                Features.gradient_Pathways=-Features.gradient_Pathways;
+            end
         else
             Features.gradCAM_Genes=gradCAMscores/(2*nRef);
             temp=nan(numel(geneList),1);
@@ -277,6 +307,10 @@ switch (featureOrder)
 
                 gradient(ind)=mean(temp)*5;
             end
+            if (fl)
+                gradient=-gradient;
+            end
+
             Features.gradient_Genes=nan(numel(geneList),1);
             Features.gradient_Genes(listGeneID)=gradient(netGeneID);
         end
@@ -361,7 +395,9 @@ switch (featureOrder)
         end
         Features.gradients=gradients+gradients';
         Features.R2=R2+R2';
-
+        if (fl)
+            Features.gradients=-Features.gradients;
+        end
 
         if (numPathways>0)
             Features.gradients_Pathways=Features.gradients(1:numPathways,1:numPathways);

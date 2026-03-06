@@ -38,7 +38,7 @@ if (isa(Dnet,"dlnetwork"))
     validateattributes(Dnet,{'dlnetwork'},{'scalar'});
 else
     validateattributes(Dnet,{'string','char'},{'scalartext'});
-    Dnet=load("core\trainedD.mat",string(Dnet));
+    Dnet=load("core\"+string(Dnet)+".mat",string(Dnet));
     Dnet=struct2cell(Dnet);
     Dnet=Dnet{1};
 end
@@ -48,7 +48,7 @@ if (isa(Gnet,"dlnetwork"))
     validateattributes(Gnet,{'dlnetwork'},{'scalar'});
 else
     validateattributes(Gnet,{'string','char'},{'scalartext'});
-    Gnet=load("core\trainedG.mat",string(Dnet));
+    Gnet=load("core\"+string(Gnet)+".mat",string(Gnet));
     Gnet=struct2cell(Gnet);
     Gnet=Gnet{1};
 end

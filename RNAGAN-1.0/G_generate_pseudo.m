@@ -27,7 +27,7 @@ if (isa(Gnet,"dlnetwork"))
     validateattributes(Gnet,{'dlnetwork'},{'scalar'});
 else
     validateattributes(Gnet,{'string','char'},{'scalartext'});
-    Gnet=load("core\trainedG.mat",string(Gnet));
+    Gnet=load("core\"+string(Gnet)+".mat",string(Gnet));
     Gnet=struct2cell(Gnet);
     Gnet=Gnet{1};
 end

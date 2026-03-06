@@ -11,7 +11,7 @@ Z(:,1,1,n:end)=Z(:,1,1,[((n+1):end),end-1]);
 Y(n:end)=1-Y(n:end);
 
 scoreD=mean(Y,"all");
-lossD=-log(scoreD);
+lossD=-mean(log(Y));
 
 gradientsD = gradient(lossD,Dnet.Learnables);
 end

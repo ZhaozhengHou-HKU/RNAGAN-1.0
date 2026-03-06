@@ -32,7 +32,7 @@ function export_network_as_TF(network,pythonPackageName)
 %     model = myModel.load_model()
 %
 %     # Step 3 (optional). In Python, save the model in SavedModel format:
-%     model.save("mySavedModel")
+%     model.save("mySavedModel.keras")
 
 % Copyright 2022-2023 The Mathworks, Inc.
 
@@ -41,11 +41,7 @@ if (isa(network,"dlnetwork"))
     validateattributes(network,{'dlnetwork'},{'scalar'});
 else
     validateattributes(network,{'string','char'},{'scalartext'});
-    if (contains(network,"D"))
-        network=load("core\trainedD.mat",string(network));
-    else
-        network=load("core\trainedG.mat",string(network));
-    end
+    network=load("core\"+string(network)+".mat",string(network));
     network=struct2cell(network);
     network=network{1};
 end

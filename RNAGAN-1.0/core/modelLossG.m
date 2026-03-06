@@ -8,7 +8,7 @@ Y = forward(netD,(GZ));
 %Y=Y(:);
 
 scoreG=mean(Y,'all');
-lossG=-log(scoreG);
+lossG=-mean(log(Y));
 
 gradientsG = dlgradient(lossG,netG.Learnables);
 end
