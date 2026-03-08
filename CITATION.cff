@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "RNAGAN: Train One and Get Four, Multipurpose Human
+RNA-Seq Analysis Tool with Enhanced Interpretability and
+Small Data Size Capability"
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Hou"
+    given-names: "Zhaozheng"
+  - family-names: "Lee"
+    given-names: "Victor Ho-Fun"
+  - family-names: "Kwong"
+    given-names: "Dora Lai-Wan"
+  - family-names: "Guan"
+    given-names: "Xinyuan"
+  - family-names: "Liu"
+    given-names: "Zhonghua"
+  - family-names: "Dai"
+    given-names: "Wei"
+doi: ""
+url: "https://github.com/ZhaozhengHou-HKU/RNAGAN-1.0"
+version: "1.0.0"
+date-released: 2026-02-27
