@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: "RNAGAN: Train One and Get Four, Multipurpose Human
 RNA-Seq Analysis Tool with Enhanced Interpretability and
 Small Data Size Capability"
-message: "If you use this RNAGAN package, please cite it as below."
+message: "If you use this package, please cite it as below."
 authors:
   - family-names: "Hou"
     given-names: "Zhaozheng"
