@@ -8,5 +8,9 @@ Document is availabe in [DOCUMENT/RNAGAN-1.0 Document-20260306.pdf](https://gith
 
 Guidance is also provided at the begining of each .m file.
 
+<p align="center">
+  <img src="DOCUMENT/RNAGAN-1.0 Dependency Graph.png">
+</p>
+
 ## License
 This project is licensed under the GPL-3.0 license.
