@@ -19,7 +19,7 @@ end
 Y(n:end)=1-Y(n:end);
 
 scoreD=mean(Y,"all");
-lossD=-mean(log(Y));
+lossD=-log(scoreD);
 
 gradientsD = dlgradient(lossD,netD.Learnables);
 end
